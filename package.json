@@ -1,0 +1,27 @@
+{
+  "name": "transparency",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "connect-modrewrite": "^0.9.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-serve": "^0.1.6",
+    "serve-static": "^1.10.2"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Transparency"
+  },
+  "author": "GeorgEdy",
+  "license": "ISC"
+}
