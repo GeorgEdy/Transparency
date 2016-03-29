@@ -8,7 +8,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 // the files to concatenate
-                src: ['js/Scripts/**'],
+                src: ['js/Scripts/main.js','js/Scripts/**/*.js'],
                 // the location of the resulting JS file
                 dest: 'js/build.js'
             }
@@ -38,8 +38,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
-    grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('default', ['concat', 'html-dist', 'js-dist']);
+    grunt.registerTask('js-dist', ['watch:js']);
+    grunt.registerTask('html-dist', ['watch:html']);
+    grunt.registerTask('serve', ['concat', 'connect:server', 'watch:js', 'watch:html']);
+    grunt.registerTask('default', ['concat', 'js-dist','html-dist']);
 };
 
 
