@@ -1,27 +1,32 @@
-body{
+body {
     background-image: url("http://i.imgur.com/HSG25BV.jpg");
     font-family: Roboto, sans-serif;
 }
+
 .nav-pills {
     float: right;
     font-weight: 500;
     font-size: 16px;
     padding-top: 5px;
 }
+
 .nav-pills a {
     color: #000000;
 }
+
 nav {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     height: 50px;
     background-color: #fff;
     position: fixed;
 }
-.map  {
-    background-color: rgba(255,255,255,.1);
+
+.map {
+    background-color: rgba(255, 255, 255, .1);
     width: 100%;
     height: 500px;
 }
+
 .map h1 {
     text-align: center;
     font-size: 40px;
@@ -30,32 +35,57 @@ nav {
     color: #000;
     font-weight: 900;
 }
-.description-container{
+
+
+polyline, polygon, path {
+    stroke: #fff;
+    fill: green;
+}
+
+.county {
+    fill: ccc;
+    fill-opacity: 1;
+    stroke: white;
+    stroke-opacity: 1;
+    stroke-width: 0.5;
+}
+
+.county:hover {
+    fill: #399b3b;
+}
+
+.description-container {
     background-color: #fff;
     padding: 80px 0 30px 0;
     height: 500px;
 }
+
 .description h1 {
     font-weight: 700;
 }
+
 .description p {
     font-weight: 500;
     line-height: 20px;
-    color:#555555;
+    color: #555555;
     padding-top: 20px;
 }
+
 .img-responsive {
     display: inline-block;
 }
+
 footer {
     margin: 30px 0 30px 0;
 }
+
 figure {
     display: inline-block;
     overflow: hidden;
     position: relative;
     margin: 10px;
 }
+
 figcaption {
     position: absolute;
     display: block;
@@ -68,15 +98,17 @@ figcaption {
     transition: background-color 0.3s ease;
     line-height: 1.33em;
 }
+
 figure:hover figcaption {
     bottom: 0;
     left: 20%;
     background-color: rgba(0, 0, 0, 0.5);
     transition: background-color 0.5s linear;
 }
+
 .form-container, .table-container, .chart-container {
     margin: 30px 0 30px 0;
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(255, 255, 255, 1);
     padding: 50px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
