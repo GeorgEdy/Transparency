@@ -26,3 +26,9 @@ app.config(function($routeProvider, $locationProvider){
 app.controller("HomeCtrl",function($scope){
 
 });
+app.controller("FilterCtrl",function($scope){
+
+});
+app.controller("ComparisonCtrl",function($scope){
+
+});
