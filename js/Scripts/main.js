@@ -1,34 +1,27 @@
 var app = angular.module("transparencyApp", ['ngRoute']);
 
-var pages = [
-    {name: 'Home', url: ''},
-    {name: 'Filter', url: 'filter'},
-    {name: 'Comparison', url: 'comparison'}
-];
-
-app.config(function($routeProvider, $locationProvider){
-
+app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode({
-        enable:true,
-        requireBase:false
+        enabled: true,
+        requireBase: false
     });
-    angular.forEach(pages, function (page) {
-        $routeProvider.when('/' + page.url, {
-            templateUrl: 'pages/' + (!page.url ? 'home' : page.url) + '.html'
+    $routeProvider
+        .when('/', {
+            templateUrl: 'Views/home.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'home'
         })
-    });
-    $routeProvider.otherwise({
-        templateUrl: 'pages/home.html',
-        controller: "HomeCtrl"
-    });
-
-});
-app.controller("HomeCtrl",function($scope){
-
-});
-app.controller("FilterCtrl",function($scope){
-
-});
-app.controller("ComparisonCtrl",function($scope){
-
+        .when('/comparison', {
+            templateUrl: 'Views/comparison.html',
+            controller: 'ComparisonCtrl',
+            controllerAs: 'comparison'
+        })
+        .when('/filter', {
+            templateUrl: 'Views/filter.html',
+            controller: 'FilterCtrl',
+            controllerAs: 'filter'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
 });
