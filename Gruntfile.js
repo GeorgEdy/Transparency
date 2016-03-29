@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 tasks: 'js-dist'
             },
             html: {
-                files: 'Views/**' + 'index.html',
+                files: ['Views/**', 'index.html'],
                 tasks: 'html-dist'
             }
         }
