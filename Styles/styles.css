@@ -120,7 +120,7 @@ figure:hover figcaption {
     width: 50%; /* Default */
     /* Center the dialog */
     top: 30%;
-    left: 50%;
+    left: 20%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);

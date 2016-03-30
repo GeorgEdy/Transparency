@@ -8,4 +8,5 @@ app.controller("HomeCtrl",function($scope){
         $scope.modalShown = false;
         $scope.modalShown = !$scope.modalShown;
     };
+
 });
