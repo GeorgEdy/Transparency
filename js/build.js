@@ -47,3 +47,16 @@ app.directive('modalDialog', function() {
         template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
     };
 });
+;app.controller("ComparisonCtrl",function($scope){
+
+});
+;app.controller("FilterCtrl",function($scope){
+
+});
+;app.controller("HomeCtrl",function($scope){
+    $scope.openModal = function () {
+        $scope.modalShown = false;
+        $scope.modalShown = !$scope.modalShown;
+    };
+
+});;
