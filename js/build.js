@@ -25,3 +25,15 @@ app.config(function ($locationProvider, $routeProvider) {
             redirectTo: '/'
         });
 });
+;app.controller("ComparisonCtrl",function($scope){
+
+});
+;app.controller("FilterCtrl",function($scope){
+    console.log($scope);
+    $scope.data = [7000, 8500];
+    $scope.labels = ['Venituri', 'Cheltuieli'];/*
+    var pie = document.getElementById('pie').getContext('2d');*/
+});
+;app.controller("HomeCtrl",function($scope){
+
+});;
