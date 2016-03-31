@@ -40,6 +40,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js-dist', ['watch:js']);
     grunt.registerTask('html-dist', ['watch:html']);
+    grunt.registerTask('watch:js', ['concat']);
     grunt.registerTask('serve', ['concat', 'connect:server', 'watch:js', 'watch:html']);
     grunt.registerTask('default', ['concat', 'js-dist','html-dist']);
 };

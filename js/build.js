@@ -1,5 +1,4 @@
 var app = angular.module("transparencyApp", ['ngRoute']);
-
 app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode({
         enabled: true,
