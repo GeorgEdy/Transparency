@@ -114,17 +114,39 @@ figure:hover figcaption {
 }
 
 .ng-modal-dialog {
-    /* A centered div above the overlay with a box shadow. */
-    z-index:10000;
-    position: absolute;
-    width: 50%; /* Default */
-    /* Center the dialog */
-    top: 30%;
-    left: 20%;
+    z-index:999;
+    position: fixed;
+    min-width: 550px;
+    min-height: 450px;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
-
     background-color: #fff;
-    box-shadow: 4px 4px 80px #000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.ng-modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+}
+.ng-modal-close {
+    color: #FD0021;
+    position: absolute;
+    right: -30px;
+    top: -30px;
+    font-size: 30px;
+    font-weight: 900;
 }
