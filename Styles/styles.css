@@ -77,15 +77,27 @@ polyline, polygon, path {
 
 footer {
     margin: 30px 0 30px 0;
+    text-align: center;
 }
-
+footer img {
+    width: 146px;
+    height: 146px;
+}
+footer h1 {
+    color: #fff;
+    margin: 0;
+    padding-left: 100px;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: 900;
+    text-align: left;
+}
 figure {
     display: inline-block;
     overflow: hidden;
     position: relative;
-    margin: 10px;
+    margin: 0 30px;
 }
-
 figcaption {
     position: absolute;
     display: block;
@@ -96,23 +108,22 @@ figcaption {
     color: #fff;
     background-color: rgba(0, 0, 0, 0);
     transition: background-color 0.3s ease;
-    line-height: 1.33em;
+    line-height: 14px;
+    font-weight: 700;
+    font-size: 16px;
 }
-
 figure:hover figcaption {
     bottom: 0;
-    left: 20%;
+    left: -9%;
     background-color: rgba(0, 0, 0, 0.5);
     transition: background-color 0.5s linear;
 }
-
 .form-container, .table-container, .chart-container {
     margin: 30px 0 30px 0;
     background-color: rgba(255, 255, 255, 1);
     padding: 50px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-
 .ng-modal-dialog {
     z-index:999;
     position: fixed;
