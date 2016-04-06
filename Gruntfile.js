@@ -25,7 +25,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: 'js/Scripts/**',
+                files: ['js/Scripts/main.js','js/Scripts/**/*.js'],
                 tasks: 'js-dist'
             },
             html: {
@@ -41,8 +41,6 @@ module.exports = function (grunt) {
     grunt.registerTask('js-dist', ['watch:js']);
     grunt.registerTask('html-dist', ['watch:html']);
     grunt.registerTask('watch:js', ['concat']);
-    grunt.registerTask('serve', ['concat', 'connect:server', 'watch:js', 'watch:html']);
+    grunt.registerTask('serve', ['concat', 'connect:server', 'watch']);
     grunt.registerTask('default', ['concat', 'js-dist','html-dist']);
 };
-
-
