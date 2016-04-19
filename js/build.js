@@ -1,4 +1,3 @@
-
 var app = angular.module("transparencyApp", ['ngRoute', 'chart.js']);
 app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode({
@@ -50,10 +49,11 @@ app.directive('modalDialog', function() {
 ;app.controller("ComparisonCtrl",function($scope){
 
 });
-;app.controller("FilterCtrl",function($scope){
-    console.log($scope);
+;app.controller("FilterCtrl",function($scope, DataStore){
     $scope.data = [7000, 8500];
     $scope.labels = ['Venituri', 'Cheltuieli'];
+    $scope.data = DataStore.getAll;
+    console.log($scope.data);
 });
 ;app.controller("HomeCtrl",function($scope){
     $scope.openModal = function () {
@@ -61,4 +61,26 @@ app.directive('modalDialog', function() {
         $scope.modalShown = !$scope.modalShown;
     };
 
-});;
+});;app.factory('DataStore', function ($http, $q) {
+    return (function () {
+        var URL = 'https://intense-sierra-23176.herokuapp.com/search';
+
+        var getAll = function () {
+            return $q(function (resolve, reject) {
+                $http({url: 'https://intense-sierra-23176.herokuapp.com/search'}).then(function (xhr) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.data);
+                        } else {
+                            reject();
+                        }
+                    },
+                    reject
+                );
+            })
+        };
+
+        return {
+            getAll: getAll
+        };
+    });
+});
