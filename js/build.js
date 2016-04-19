@@ -52,8 +52,12 @@ app.directive('modalDialog', function() {
 ;app.controller("FilterCtrl",function($scope, DataStore){/*
     $scope.data = [7000, 8500];
     $scope.labels = ['Venituri', 'Cheltuieli'];*/
-    $scope.data = DataStore.getAll;
-    console.log($scope.data);
+    $scope.data = [];
+    DataStore.getAll().then(function(items) {
+      $scope.data = items;
+      console.log($scope.data);
+  });
+
 });
 ;app.controller("HomeCtrl",function($scope){
     $scope.openModal = function () {
@@ -67,7 +71,7 @@ app.directive('modalDialog', function() {
 
         var getAll = function () {
             return $q(function (resolve, reject) {
-                $http({url: 'https://intense-sierra-23176.herokuapp.com/search'}).then(function (xhr) {
+                $http({url: URL}).then(function (xhr) {
                         if (xhr.status == 200) {
                             resolve(xhr.data);
                         } else {
@@ -82,5 +86,5 @@ app.directive('modalDialog', function() {
         return {
             getAll: getAll
         };
-    });
+    })();
 });

@@ -4,7 +4,7 @@ app.factory('DataStore', function ($http, $q) {
 
         var getAll = function () {
             return $q(function (resolve, reject) {
-                $http({url: 'https://intense-sierra-23176.herokuapp.com/search'}).then(function (xhr) {
+                $http({url: URL}).then(function (xhr) {
                         if (xhr.status == 200) {
                             resolve(xhr.data);
                         } else {
@@ -19,5 +19,5 @@ app.factory('DataStore', function ($http, $q) {
         return {
             getAll: getAll
         };
-    });
+    })();
 });
