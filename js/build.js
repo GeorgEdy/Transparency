@@ -49,9 +49,9 @@ app.directive('modalDialog', function() {
 ;app.controller("ComparisonCtrl",function($scope){
 
 });
-;app.controller("FilterCtrl",function($scope, DataStore){
+;app.controller("FilterCtrl",function($scope, DataStore){/*
     $scope.data = [7000, 8500];
-    $scope.labels = ['Venituri', 'Cheltuieli'];
+    $scope.labels = ['Venituri', 'Cheltuieli'];*/
     $scope.data = DataStore.getAll;
     console.log($scope.data);
 });
