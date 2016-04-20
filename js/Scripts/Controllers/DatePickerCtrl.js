@@ -10,7 +10,7 @@ app.controller('DatePickerCtrl', function ($scope) {
 
   $scope.inlineOptions = {
     customClass: getDayClass,
-    maxDate: new Date(),
+    maxDate: new Date(2016, 1, 1),
     showWeeks: false
   };
 
@@ -19,7 +19,7 @@ app.controller('DatePickerCtrl', function ($scope) {
     'starting-day': 1,
     'datepicker-mode':"'month'",
     'min-mode':"month",
-    maxDate: new Date(),
+    maxDate: new Date(2016, 1, 1),
     minDate: new Date(2016, 1, 1)
   };
 

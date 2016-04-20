@@ -112,7 +112,7 @@ function AutocompleteCtrl ($timeout, $q, $log) {
 
   $scope.inlineOptions = {
     customClass: getDayClass,
-    maxDate: new Date(),
+    maxDate: new Date(2016, 1, 1),
     showWeeks: false
   };
 
@@ -121,7 +121,7 @@ function AutocompleteCtrl ($timeout, $q, $log) {
     'starting-day': 1,
     'datepicker-mode':"'month'",
     'min-mode':"month",
-    maxDate: new Date(),
+    maxDate: new Date(2016, 1, 1),
     minDate: new Date(2016, 1, 1)
   };
 
@@ -163,13 +163,15 @@ function AutocompleteCtrl ($timeout, $q, $log) {
       console.log("all: ",$scope.data);
   });
 
-    DataStore.getSearch('educatie', 'gradinita').then(function(items){
+    $scope.search = function() {
+      $scope.arie = document.getElementById('arie').value;
+      $scope.institutie = document.getElementById('institutie').value;
+      DataStore.getSearch($scope.arie, $scope.institutie).then(function(items){
         $scope.data = items;
-        console.log("area: ",$scope.data);
-    })
-
-});
-;app.controller("HomeCtrl",function($scope){
+        console.log("data ",$scope.data);
+    })  
+    }
+});;app.controller("HomeCtrl",function($scope){
     $scope.openModal = function () {
         $scope.modalShown = false;
         $scope.modalShown = !$scope.modalShown;

@@ -7,9 +7,12 @@ app.controller("FilterCtrl",function($scope, DataStore){/*
       console.log("all: ",$scope.data);
   });
 
-    DataStore.getSearch('educatie', 'gradinita').then(function(items){
+    $scope.search = function() {
+      $scope.arie = document.getElementById('arie').value;
+      $scope.institutie = document.getElementById('institutie').value;
+      DataStore.getSearch($scope.arie, $scope.institutie).then(function(items){
         $scope.data = items;
-        console.log("area: ",$scope.data);
-    })
-
+        console.log("data ",$scope.data);
+    })  
+    }
 });
