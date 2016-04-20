@@ -100,7 +100,6 @@ function AutocompleteCtrl ($timeout, $q, $log) {
         }  ;app.controller("ComparisonCtrl",function($scope){
 
 });
-
 ;app.controller('DatePickerCtrl', function ($scope) {
   $scope.today = function() {
     $scope.dt = new Date();
@@ -155,9 +154,7 @@ function AutocompleteCtrl ($timeout, $q, $log) {
 
     return '';
   }
-});;
-;app.controller("FilterCtrl",function($scope, DataStore){/*
->>>>>>> f4d2644d806cd41a1ae3b04167fd4b39a92e1d06
+});;app.controller("FilterCtrl",function($scope, DataStore){/*
     $scope.data = [7000, 8500];
     $scope.labels = ['Venituri', 'Cheltuieli'];*/
     $scope.data = [];
