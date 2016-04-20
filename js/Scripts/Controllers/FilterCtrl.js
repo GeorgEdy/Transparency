@@ -4,7 +4,12 @@ app.controller("FilterCtrl",function($scope, DataStore){/*
     $scope.data = [];
     DataStore.getAll().then(function(items) {
       $scope.data = items;
-      console.log($scope.data);
+      console.log("all: ",$scope.data);
   });
+
+    DataStore.getSearch('educatie', 'gradinita').then(function(items){
+        $scope.data = items;
+        console.log("area: ",$scope.data);
+    })
 
 });

@@ -55,8 +55,13 @@ app.directive('modalDialog', function() {
     $scope.data = [];
     DataStore.getAll().then(function(items) {
       $scope.data = items;
-      console.log($scope.data);
+      console.log("all: ",$scope.data);
   });
+
+    DataStore.getSearch('educatie', 'gradinita').then(function(items){
+        $scope.data = items;
+        console.log("area: ",$scope.data);
+    })
 
 });
 ;app.controller("HomeCtrl",function($scope){
@@ -82,9 +87,36 @@ app.directive('modalDialog', function() {
                 );
             })
         };
+        var getSearch = function (area, inst) {
+            return $q(function (resolve, reject) {
+                var url = URL;
+                var params = '';
+                if (area !== '') {
+                    params = '?area=' + area;
+                }
+                if (inst !== '') {
+                    if (params !== '') {
+                        params += '&inst=' + inst;
+                    } else {
+                        params = '?inst=' + inst
+                    }
+                }
+                url += params;
+                $http({url: url}).then(function (xhr) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.data);
+                        } else {
+                            reject();
+                        }
+                    },
+                    reject
+                );
+            })
+        };
 
         return {
-            getAll: getAll
+            getAll: getAll,
+            getSearch: getSearch
         };
     })();
 });
