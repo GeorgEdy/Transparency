@@ -100,6 +100,7 @@ function AutocompleteCtrl ($timeout, $q, $log) {
         }  ;app.controller("ComparisonCtrl",function($scope){
 
 });
+
 ;app.controller('DatePickerCtrl', function ($scope) {
   $scope.today = function() {
     $scope.dt = new Date();
@@ -154,10 +155,22 @@ function AutocompleteCtrl ($timeout, $q, $log) {
 
     return '';
   }
-});;app.controller("FilterCtrl",function($scope){
-    console.log($scope);
+});;
+;app.controller("FilterCtrl",function($scope, DataStore){/*
+>>>>>>> f4d2644d806cd41a1ae3b04167fd4b39a92e1d06
     $scope.data = [7000, 8500];
-    $scope.labels = ['Venituri', 'Cheltuieli'];
+    $scope.labels = ['Venituri', 'Cheltuieli'];*/
+    $scope.data = [];
+    DataStore.getAll().then(function(items) {
+      $scope.data = items;
+      console.log("all: ",$scope.data);
+  });
+
+    DataStore.getSearch('educatie', 'gradinita').then(function(items){
+        $scope.data = items;
+        console.log("area: ",$scope.data);
+    })
+
 });
 ;app.controller("HomeCtrl",function($scope){
     $scope.openModal = function () {
@@ -165,4 +178,53 @@ function AutocompleteCtrl ($timeout, $q, $log) {
         $scope.modalShown = !$scope.modalShown;
     };
 
-});;
+});;app.factory('DataStore', function ($http, $q) {
+    return (function () {
+        var URL = 'https://intense-sierra-23176.herokuapp.com/search';
+
+        var getAll = function () {
+            return $q(function (resolve, reject) {
+                $http({url: URL}).then(function (xhr) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.data);
+                        } else {
+                            reject();
+                        }
+                    },
+                    reject
+                );
+            })
+        };
+        var getSearch = function (area, inst) {
+            return $q(function (resolve, reject) {
+                var url = URL;
+                var params = '';
+                if (area !== '') {
+                    params = '?area=' + area;
+                }
+                if (inst !== '') {
+                    if (params !== '') {
+                        params += '&inst=' + inst;
+                    } else {
+                        params = '?inst=' + inst
+                    }
+                }
+                url += params;
+                $http({url: url}).then(function (xhr) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.data);
+                        } else {
+                            reject();
+                        }
+                    },
+                    reject
+                );
+            })
+        };
+
+        return {
+            getAll: getAll,
+            getSearch: getSearch
+        };
+    })();
+});
