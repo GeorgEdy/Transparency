@@ -1,4 +1,4 @@
-var app = angular.module("transparencyApp", ['ngRoute', 'chart.js']);
+var app = angular.module("transparencyApp", ['ngRoute', 'chart.js', 'ui.bootstrap', 'ngMaterial']);
 app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode({
         enabled: true,
