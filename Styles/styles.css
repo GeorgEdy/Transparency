@@ -8,14 +8,15 @@ body {
     float: right;
     font-weight: 500;
     font-size: 16px;
-    padding-top: 5px;
+    padding: 5px 0;
+    line-height: 20px;
+    margin-right: 20px;
 }
 
-.nav-pills a {
-    color: #fff;
-}
-.nav>li>a:hover, .nav>li>a:focus  {
-    background-color: rgba(255,255,255,.15);
+nav {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: #fff;
+    position: fixed;
 }
 
 .map {
@@ -33,11 +34,11 @@ body {
 }
 polyline, polygon, path {
     stroke: #fff;
-    fill: green;
+    fill: #608061;
 }
 
 .county {
-    fill: ccc;
+    fill: #608061;
     fill-opacity: 1;
     stroke: white;
     stroke-opacity: 1;
@@ -45,7 +46,7 @@ polyline, polygon, path {
 }
 
 .county:hover {
-    fill: #399b3b;
+    fill: #7FA080;
 }
 
 .description-container {
@@ -107,10 +108,12 @@ figcaption {
     border-radius: 5px;
 }
 .form-container, .table-container, .chart-container {
-    margin: 30px 0 30px 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
     background-color: rgba(255, 255, 255, 1);
-    padding: 50px;
+    padding: 25px 50px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
 }
 .ng-modal-dialog {
     z-index:999;
@@ -148,4 +151,67 @@ figcaption {
     top: -30px;
     font-size: 30px;
     font-weight: 900;
+}
+#bucuresti {
+    fill: #3E5D3E;
+}
+#bucuresti:hover {
+    fill: #7FA080;
+}
+.nav>li {
+    text-align: center;
+    margin: 0 20px;
+}
+.nav>li>a {
+    display: table-caption;
+    padding: 5px 10px;
+}
+#judet {
+    width: 50%;
+}
+.data-adjust {
+    width: 25%;
+    margin: 0;
+}
+.data-adjust2 {
+    top: 13px;
+}
+.data-adjust4 {
+    margin-top: 30px;
+}
+.btn.btn-default.data-adjust3{
+    border-radius: 4px;
+}
+.md-whiteframe-1dp, .md-whiteframe-z1 {
+    box-shadow: none;
+}
+md-autocomplete input:not(.md-input) {
+    height: 34px;
+    line-height: 15px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+md-autocomplete input:not(.md-input):focus {
+    border-color: #66afe9;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+md-autocomplete, md-autocomplete-wrap {
+    height: 34px;
+}
+
+md-autocomplete button {
+    line-height: 15px;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    margin: 0;
+}
+
+#datepicker {
+    border-radius: 4px;
 }

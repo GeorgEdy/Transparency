@@ -1,4 +1,4 @@
-var app = angular.module("transparencyApp", ['ngRoute', 'chart.js']);
+var app = angular.module("transparencyApp", ['ngRoute', 'chart.js', 'ui.bootstrap', 'ngMaterial']);
 app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode({
         enabled: true,
@@ -45,11 +45,116 @@ app.directive('modalDialog', function() {
         },
         template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><span class='glyphicon glyphicon-remove'></span></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
     };
-});
-;app.controller("ComparisonCtrl",function($scope){
+});;app.controller('AutocompleteCtrl', AutocompleteCtrl);
+
+function AutocompleteCtrl ($timeout, $q, $log) {
+           var self = this;
+           self.simulateQuery = false;
+           self.isDisabled    = false;
+           self.jud        = loadJud();
+           self.querySearch   = querySearch;
+           self.selectedItemChange = selectedItemChange;
+           self.searchTextChange   = searchTextChange;
+   
+           function querySearch (query) {
+              var results = query ? self.jud.filter( createFilterFor(query) ) : self.jud, deferred;
+              if (self.simulateQuery) {
+                 deferred = $q.defer();
+                 $timeout(function () { 
+                       deferred.resolve( results ); 
+                    }, 
+		            Math.random() * 1000, false);
+                 return deferred.promise;
+              } else {
+                 return results;
+              }
+           }
+           function searchTextChange(text) {
+              $log.info('Text changed to ' + text);
+           }
+           function selectedItemChange(item) {
+              $log.info('Item changed to ' + JSON.stringify(item));
+           }
+           //build list of states as map of key-value pairs
+           function loadJud() {
+              var allJud = 'Alba, Arad, Arges, Bacau, Bihor, Bistrita Nasaud, Botosani,\
+              	Braila, Brasov, Bucuresti, Buzau, Calarasi, Caras Severin, Cluj,\
+              	Constanta, Covasna, Dambovita, Dolj, Galati, Giurgiu, Gorj,\
+              	Harghita, Hunedoara, Ialomita, Iasi, Ilfov, Maramures,\
+              	Mehedinti, Mures, Neamt, Olt, Prahova, Salaj, Satu Mare,\
+              	Sibiu, Suceava, Teleorman, Timis, Tulcea, Valcea, Vaslui, Vrancea' ;
+              return allJud.split(/, +/g).map( function (state) {
+                 return {
+                    value: state.toLowerCase(),
+                    display: state
+                 };
+              });
+           }
+           //filter function for search query
+           function createFilterFor(query) {
+              var lowercaseQuery = angular.lowercase(query);
+              return function filterFn(state) {
+                 return (state.value.indexOf(lowercaseQuery) === 0);
+              };
+           }
+        }  ;app.controller("ComparisonCtrl",function($scope){
 
 });
-;app.controller("FilterCtrl",function($scope, DataStore){/*
+;app.controller('DatePickerCtrl', function ($scope) {
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function() {
+    $scope.dt = null;
+  };
+
+  $scope.inlineOptions = {
+    customClass: getDayClass,
+    maxDate: new Date(),
+    showWeeks: false
+  };
+
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1,
+    'datepicker-mode':"'month'",
+    'min-mode':"month",
+    maxDate: new Date(),
+    minDate: new Date(2016, 1, 1)
+  };
+
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+  $scope.setDate = function(year, month, day) {
+    $scope.dt = new Date(year, month, day);
+  };
+  
+  $scope.popup1 = {
+    opened: false
+  };
+
+  function getDayClass(data) {
+    var date = data.date,
+      mode = data.mode;
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i = 0; i < $scope.events.length; i++) {
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+
+    return '';
+  }
+});;app.controller("FilterCtrl",function($scope, DataStore){/*
     $scope.data = [7000, 8500];
     $scope.labels = ['Venituri', 'Cheltuieli'];*/
     $scope.data = [];
