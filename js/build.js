@@ -1,4 +1,3 @@
-
 var app = angular.module("transparencyApp", ['ngRoute', 'chart.js']);
 app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode({
