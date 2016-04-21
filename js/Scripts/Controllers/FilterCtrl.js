@@ -5,17 +5,22 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
 
         var venit;
         var cheltuieli;
-        var chartForData = [];
+        $scope.chartData = [0, 0];
 
         angular.forEach($scope.data, function (item) {
             var currentRow = $event.target.parentNode;
             var dataId = currentRow.getAttribute('data-id');
             venit = $scope.data[dataId-1].venit;
             cheltuieli = $scope.data[dataId-1].cheltuieli;
+            $scope.chartData = [];
         });
 
-        chartForData.push(venit);
-        chartForData.push(cheltuieli);
+        $scope.chartData.push(venit);
+        $scope.chartData.push(cheltuieli);
+
+        console.log($scope.chartData);
+
+        return $scope.chartData;
     };
 
 
@@ -32,9 +37,6 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
             $scope.data = items;
         })
     };
-
-    $scope.chartData = $scope.openModal().chartForData;
-    console.log($scope.chartData);
 
     $scope.chartLabels = ['Venituri', 'Cheltuieli'];
 });
