@@ -1,12 +1,20 @@
 <div class="container-fluid" ng-controller="FilterCtrl">
+    <modal-dialog show='modalShown'>
+        <canvas id="pie" class="chart chart-pie" chart-data="chartData" chartlabels="chartLabels"></canvas>
+    </modal-dialog>
     <div class="col-md-6 col-md-offset-3 form-container">
         <form class="form-horizontal" ng-submit="search()">
             <div class="form-group" ng-controller="DatePickerCtrl">
                 <p class="input-group data-adjust">
                     <label for="judet">Luna / An</label>
-                    <input type="text" class="form-control" uib-datepicker-popup="MMM-yyyy" min-mode="'month'" datepicker-mode="month" ng-model="dt" is-open="popup1.opened" close-on-date-selection="true" datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Inchideti" current-text="Luna curenta" clear-text="Stergeti" ng-click="open1()" id="datepicker" value="Jan-2016"/>
+                    <input type="text" class="form-control" uib-datepicker-popup="MMM-yyyy" min-mode="'month'"
+                           datepicker-mode="month" ng-model="dt" is-open="popup1.opened" close-on-date-selection="true"
+                           datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Inchideti"
+                           current-text="Luna curenta" clear-text="Stergeti" ng-click="open1()" id="datepicker"
+                           value="Jan-2016"/>
                     <span class="input-group-btn data-adjust2">
-                        <button type="button" class="btn btn-default data-adjust3" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default data-adjust3" ng-click="open1()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </p>
             </div>
@@ -16,7 +24,13 @@
             </div>
             <div class="form-group" ng-controller="AutocompleteCtrl as ctrl">
                 <label for="judet">Judet</label>
-                <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)"md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display" md-min-length="0" placeholder="Bucuresti">
+                <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache"
+                                 md-selected-item="ctrl.selectedItem"
+                                 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                 md-search-text="ctrl.searchText"
+                                 md-selected-item-change="ctrl.selectedItemChange(item)"
+                                 md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display"
+                                 md-min-length="0" placeholder="Bucuresti">
                     <md-item-template>
                         <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
                     </md-item-template>
@@ -37,16 +51,16 @@
     <div class="table-responsive col-md-8 col-md-offset-2 table-container">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Institutie</th>
-                    <th>Judet</th>
-                    <th>Aria</th>
-                    <th>Venit</th>
-                    <th>Cheltuieli</th>
-                </tr>
+            <tr>
+                <th>Institutie</th>
+                <th>Judet</th>
+                <th>Aria</th>
+                <th>Venit</th>
+                <th>Cheltuieli</th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in data">
+            <tr ng-repeat="item in data" ng-click="openModal($event)" data-id="{{item.id}}">
                    <td>{{item.institutie}}</td>
                    <td>{{item.judet}}</td>
                    <td>{{item.arie}}</td>
@@ -56,7 +70,4 @@
             </tbody>
         </table>
     </div>
-    <!--<div>
-        <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels"></canvas>
-    </div>-->
 </div>
