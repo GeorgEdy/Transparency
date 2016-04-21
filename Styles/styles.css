@@ -50,15 +50,15 @@ g {
 }
 
 .county {
-    fill: #608061;
+    fill: rgba(0, 201, 255, 0.82);
     fill-opacity: 1;
-    stroke: white;
+    stroke: rgba(0, 0, 0, 0.87);
     stroke-opacity: 1;
     stroke-width: 0.5;
 }
 
 .county:hover {
-    fill: #7FA080;
+    fill: rgba(18, 128, 255, 0.82);
 }
 
 .description-container {
@@ -165,10 +165,10 @@ figcaption {
     font-weight: 900;
 }
 #bucuresti {
-    fill: #3E5D3E;
+    fill: rgba(0, 72, 255, 0.82);
 }
 #bucuresti:hover {
-    fill: #7FA080;
+    fill: rgba(0, 107, 255, 0.82);
 }
 .nav>li {
     text-align: center;
