@@ -33,6 +33,10 @@ polyline, polygon, path {
     fill: #608061;
 }
 
+g {
+    transform: scale(1.1);
+}
+
 .county {
     fill: #608061;
     fill-opacity: 1;
@@ -238,4 +242,16 @@ body {
     display: inline-block;
     width: 49%;
     text-align: center;
+.data {
+    color:white;
+    font-size:18px;
+    top:50%;
+    left:20%;
+    transform: translate(-50%,-20%);
 }
+/*=========================utility classes======================*/
+.relative {
+    position:relative;
+}
+.absolute {
+    position: absolute;
