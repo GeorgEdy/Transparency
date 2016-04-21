@@ -1,5 +1,13 @@
 body, html {
     height: auto;
+    background: none;
+}
+
+
+body {
+    background: #464646 url("http://i.imgur.com/HSG25BV.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Roboto, sans-serif;
 }
 
 .nav-pills {
@@ -220,12 +228,6 @@ md-autocomplete button {
 
 #datepicker {
     border-radius: 4px;
-}
-
-body {
-    background: #464646 url("http://i.imgur.com/HSG25BV.jpg") no-repeat center center fixed;
-    background-size: cover;
-    font-family: Roboto, sans-serif;
 }
 
 #byinstitutie,
