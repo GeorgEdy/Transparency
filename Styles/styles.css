@@ -1,3 +1,7 @@
+body, html {
+    height: auto;
+}
+
 .nav-pills {
     float: right;
     font-weight: 500;
@@ -218,11 +222,6 @@ md-autocomplete button {
     border-radius: 4px;
 }
 
-body, html {
-    height: auto;
-    background: none;
-}
-
 body {
     background: #464646 url("http://i.imgur.com/HSG25BV.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -242,6 +241,7 @@ body {
     display: inline-block;
     width: 49%;
     text-align: center;
+}
 .data {
     color:white;
     font-size:18px;
