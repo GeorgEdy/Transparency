@@ -1,12 +1,15 @@
+body, html {
+    height: auto;
+    background: none;
+}
+
+
 body {
     background: #464646 url("http://i.imgur.com/HSG25BV.jpg") no-repeat center center fixed;
     background-size: cover;
     font-family: Roboto, sans-serif;
 }
 
-body, html {
-    height: auto;
-}
 .nav-pills {
     float: right;
     font-weight: 500;
@@ -187,6 +190,9 @@ figcaption {
 .data-adjust4 {
     margin-top: 30px;
 }
+.data-adjust5 {
+    margin-top: 30px;
+}
 .btn.btn-default.data-adjust3{
     border-radius: 4px;
 }
@@ -224,6 +230,20 @@ md-autocomplete button {
     border-radius: 4px;
 }
 
+#byinstitutie,
+#byinstitutie2 {
+    width: 100%;
+}
+
+#byjudet {
+    display: block;
+}
+
+.ib {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
 .data {
     color:white;
     font-size:18px;
@@ -237,4 +257,3 @@ md-autocomplete button {
 }
 .absolute {
     position: absolute;
-}
