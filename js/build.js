@@ -161,6 +161,7 @@ function AutocompleteCtrl ($timeout, $q, $log) {
 
         var venit;
         var cheltuieli;
+        var chartForData = [];
 
         angular.forEach($scope.data, function (item) {
             var currentRow = $event.target.parentNode;
@@ -169,10 +170,11 @@ function AutocompleteCtrl ($timeout, $q, $log) {
             cheltuieli = $scope.data[dataId-1].cheltuieli;
         });
 
-        var chartData = [venit, cheltuieli];
-
-        return chartData;
+        chartForData.push(venit);
+        chartForData.push(cheltuieli);
     };
+
+
 
     $scope.data = [];
     DataStore.getAll().then(function (items) {
@@ -187,7 +189,8 @@ function AutocompleteCtrl ($timeout, $q, $log) {
         })
     };
 
-    /*$scope.chartData = $scope.openModal;*/
+    $scope.chartData = $scope.chartForData;
+    console.log($scope.chartData);
 
     $scope.chartLabels = ['Venituri', 'Cheltuieli'];
 });;app.controller("HomeCtrl",function($scope){

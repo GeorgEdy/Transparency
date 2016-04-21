@@ -5,6 +5,7 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
 
         var venit;
         var cheltuieli;
+        var chartForData = [];
 
         angular.forEach($scope.data, function (item) {
             var currentRow = $event.target.parentNode;
@@ -13,10 +14,11 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
             cheltuieli = $scope.data[dataId-1].cheltuieli;
         });
 
-        var chartData = [venit, cheltuieli];
-
-        return chartData;
+        chartForData.push(venit);
+        chartForData.push(cheltuieli);
     };
+
+
 
     $scope.data = [];
     DataStore.getAll().then(function (items) {
@@ -31,7 +33,8 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
         })
     };
 
-    /*$scope.chartData = $scope.openModal;*/
+    $scope.chartData = $scope.openModal().chartForData;
+    console.log($scope.chartData);
 
     $scope.chartLabels = ['Venituri', 'Cheltuieli'];
 });
