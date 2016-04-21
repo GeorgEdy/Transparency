@@ -217,21 +217,23 @@ function AutocompleteCtrl ($timeout, $q, $log) {
                 );
             })
         };
+
         var getSearch = function (area, inst) {
             return $q(function (resolve, reject) {
                 var url = URL;
                 var params = '';
                 if (area !== '') {
-                    params = '?area=' + area;
+                    params = '?area=' + encodeURIComponent(area);
                 }
                 if (inst !== '') {
                     if (params !== '') {
-                        params += '&inst=' + inst;
+                        params += '&inst=' + encodeURIComponent(inst);
                     } else {
-                        params = '?inst=' + inst
+                        params = '?inst=' + encodeURIComponent(inst);
                     }
                 }
                 url += params;
+
                 $http({url: url}).then(function (xhr) {
                         if (xhr.status == 200) {
                             resolve(xhr.data);
