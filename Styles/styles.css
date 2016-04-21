@@ -4,6 +4,9 @@ body {
     font-family: Roboto, sans-serif;
 }
 
+body, html {
+    height: auto;
+}
 .nav-pills {
     float: right;
     font-weight: 500;
@@ -37,6 +40,10 @@ body {
 polyline, polygon, path {
     stroke: #fff;
     fill: #608061;
+}
+
+g {
+    transform: scale(1.1);
 }
 
 .county {
@@ -217,6 +224,17 @@ md-autocomplete button {
     border-radius: 4px;
 }
 
-body, html {
-    height: auto;
+.data {
+    color:white;
+    font-size:18px;
+    top:50%;
+    left:20%;
+    transform: translate(-50%,-20%);
+}
+/*=========================utility classes======================*/
+.relative {
+    position:relative;
+}
+.absolute {
+    position: absolute;
 }
