@@ -18,8 +18,6 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
         $scope.chartData.push(venit);
         $scope.chartData.push(cheltuieli);
 
-        console.log($scope.chartData);
-
         return $scope.chartData;
     };
 
@@ -39,4 +37,5 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
     };
 
     $scope.chartLabels = ['Venituri', 'Cheltuieli'];
+    Chart.defaults.global.colours = ['#00ffff','#fff'];
 });
