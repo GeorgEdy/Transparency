@@ -16,16 +16,15 @@ app.controller("HomeCtrl", function($scope, DataStore){
                     outcomeSum += Math.round(index.cheltuieli);
                 }
             });
-
-            document.getElementById('income-hover').innerHTML = 'Total venituri: ' + incomeSum +'  mii lei';
-            document.getElementById('outcome-hover').innerHTML = 'Total cheltuieli: ' + outcomeSum +' mii lei';
+            document.getElementById('income-hover').innerHTML = 'Total venituri: '  + incomeSum +'.000 lei';
+            document.getElementById('outcome-hover').innerHTML = 'Total cheltuieli: ' + outcomeSum +'.000 lei';
             return [incomeSum, outcomeSum];
         });
-
+        document.getElementById('income-outcome').classList.add('data-container');
     };
     $scope.hideData = function () {
         document.getElementById('income-hover').innerHTML = '';
         document.getElementById('outcome-hover').innerHTML = '';
-
+        document.getElementById('income-outcome').classList.remove('data-container');
     }
 });

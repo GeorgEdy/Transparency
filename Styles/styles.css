@@ -1,4 +1,4 @@
-body,
+fbody,
 html {
     height: auto;
     background: none;
@@ -272,11 +272,11 @@ md-autocomplete button {
     transform: translate(-50%,-20%);
 }
 .data-container {
-    border: 4px solid #06AAD7;
+    border: 4px solid rgba(15, 115, 213, 0.4);
     height: 20%;
-    width: 30%;
-    background-color: rgba(6, 170, 215, 0.22);
-    padding: 15px 0 15px 25px;
+    width: 25%;
+    background-color: rgba(6, 170, 215,0.9);
+    padding: 15px 0 15px 35px;
     line-height: 1.5;
 }
 
