@@ -1,4 +1,4 @@
-body,
+fbody,
 html {
     height: auto;
     background: none;
@@ -53,15 +53,15 @@ g {
 }
 
 .county {
-    fill: #608061;
+    fill: rgba(0, 201, 255, 0.82);
     fill-opacity: 1;
-    stroke: white;
+    stroke: rgba(0, 0, 0, 0.87);
     stroke-opacity: 1;
     stroke-width: 0.5;
 }
 
 .county:hover {
-    fill: #7FA080;
+    fill: rgba(18, 128, 255, 0.82);
 }
 
 .description-container {
@@ -179,13 +179,12 @@ figcaption {
 }
 
 #bucuresti {
-    fill: #3E5D3E;
+    fill: rgba(0, 72, 255, 0.82);
 }
 
 #bucuresti:hover {
-    fill: #7FA080;
+    fill: rgba(0, 107, 255, 0.82);
 }
-
 .nav>li {
     text-align: center;
     margin: 0 20px;
@@ -265,14 +264,22 @@ md-autocomplete button {
     text-align: center;
     margin: 0 2.3%;
 }
-
-.data {
-    color:white;
-    font-size:18px;
-    top:50%;
-    left:20%;
+.data{
+    color: white;
+    font-size: 20px;
+    top: 45%;
+    left: 20%;
     transform: translate(-50%,-20%);
 }
+.data-container {
+    border: 4px solid rgba(15, 115, 213, 0.4);
+    height: 20%;
+    width: 25%;
+    background-color: rgba(6, 170, 215,0.9);
+    padding: 15px 0 15px 35px;
+    line-height: 1.5;
+}
+
 /*=========================utility classes======================*/
 .relative {
     position:relative;
@@ -285,7 +292,7 @@ md-autocomplete button {
 }
 
 .face-container {
-    background-color: rgba(51,51,51,1);;
+    background-color: rgba(51,51,51,1);
     position: relative;
     z-index: 2;
     width: 160px;
@@ -327,7 +334,7 @@ md-autocomplete button {
 }
 
 .face-container:hover .desc {
-    color: #D6A126;
+    color: rgba(0, 201, 255, 0.82);
     transition: color 0.4s ease-in-out 0.8s;
 }
 
@@ -376,4 +383,13 @@ md-autocomplete button {
     left: 50%;
     transform: translateX(-50%);
     bottom: -10px;
+}
+.buttons {
+    background-color: rgba(0, 201, 255, 0.82);
+    border-color: rgba(0, 201, 255, 1);
+    font-weight: 500;
+}
+.buttons:hover {
+    background-color: rgba(0, 176, 255, 0.82);
+    border-color: #00A8FF;
 }
