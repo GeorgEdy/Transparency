@@ -3,17 +3,19 @@
     <div class="col-md-6 col-md-offset-3 form-container">
         <form class="form-horizontal" ng-submit="search()">
             <div class="form-group" ng-controller="DatePickerCtrl">
-                <p class="input-group data-adjust">
-                    <label for="judet">Luna / An</label>
-                    <input type="text" class="form-control datepicker" uib-datepicker-popup="MMM-yyyy" min-mode="'month'" datepicker-mode="month" ng-model="dt" is-open="popup1.opened" close-on-date-selection="true" datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Inchideti" current-text="Luna curenta" clear-text="Stergeti" ng-click="open1()" id="datepicker" value="Jan-2016"/>
-                    <span class="input-group-btn data-adjust2">
-                        <button type="button" class="btn btn-default data-adjust3" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </p>
-            </div>
-            <div class="form-group">
-                <label for="arie">Arie de activitate</label>
-                <input type="text" class="form-control" id="arie" placeholder="Alegeti aria de activitate">
+                <div class="ib">
+                    <div class="input-group data-adjust2">
+                        <label for="judet">Luna / An</label>
+                        <input type="text" class="form-control datepicker" uib-datepicker-popup="MMM-yyyy" min-mode="'month'" datepicker-mode="month" ng-model="dt" is-open="popup1.opened" close-on-date-selection="true" datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Inchideti" current-text="Luna curenta" clear-text="Stergeti" ng-click="open1()" id="datepicker" show-button-bar="false"/>
+                        <span class="input-group-btn data-adjust2">
+                            <button type="button" class="btn btn-default data-adjust3" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="ib">
+                    <label for="arie">Arie de activitate</label>
+                    <input type="text" class="form-control" id="arie" placeholder="Alegeti aria de activitate">
+                </div>
             </div>
             <div class="form-group" ng-controller="AutocompleteCtrl as ctrl">
                 <label for="judet">Judet</label>

@@ -194,11 +194,6 @@ figcaption {
     padding: 5px 10px;
 }
 
-.data-adjust {
-    width: 25%;
-    margin: 0;
-}
-
 .data-adjust2 {
     top: 13px;
 }
@@ -206,8 +201,6 @@ figcaption {
 .data-adjust4 {
     margin-top: 30px;
     width: 45%;
-    margin-left: 2.3%;
-
 }
 
 .data-adjust5 {
@@ -250,7 +243,7 @@ md-autocomplete button {
     margin: 0;
 }
 
-.form-group .input-group.data-adjust input.datepicker {
+.ib .input-group.data-adjust2 input.datepicker {
     border-radius: 4px;
 }
 
@@ -260,9 +253,8 @@ md-autocomplete button {
 
 .ib {
     display: inline-block;
-    width: 45%;
+    width: 49.5%;
     text-align: center;
-    margin: 0 2.3%;
 }
 .data{
     color: white;
