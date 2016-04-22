@@ -1,2 +1,331 @@
-/*! transparency 2016-04-22 */
-var app=angular.module("transparencyApp",["ngRoute","chart.js","ui.bootstrap","ngMaterial"]);app.config(function($locationProvider,$routeProvider){$locationProvider.html5Mode({enabled:!0,requireBase:!1}),$routeProvider.when("/",{templateUrl:"Views/home.html",controller:"HomeCtrl",controllerAs:"home"}).when("/comparison",{templateUrl:"Views/comparison.html",controller:"ComparisonCtrl",controllerAs:"comparison"}).when("/filter",{templateUrl:"Views/filter.html",controller:"FilterCtrl",controllerAs:"filter"}).otherwise({redirectTo:"/"})}),app.directive("modalDialog",function(){return{restrict:"E",scope:{show:"="},replace:!0,transclude:!0,link:function(scope,element,attrs){scope.dialogStyle={},attrs.width&&(scope.dialogStyle.width=attrs.width),attrs.height&&(scope.dialogStyle.height=attrs.height),scope.hideModal=function(){scope.show=!1}},template:"<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><span class='glyphicon glyphicon-remove'></span></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"}}),app.controller("AutocompleteCtrl",function($timeout,$q,$log){function querySearch(query){var deferred,results=query?self.jud.filter(createFilterFor(query)):self.jud;return self.simulateQuery?(deferred=$q.defer(),$timeout(function(){deferred.resolve(results)},1e3*Math.random(),!1),deferred.promise):results}function searchTextChange(text){$log.info("Text changed to "+text)}function selectedItemChange(item){$log.info("Item changed to "+JSON.stringify(item))}function loadJud(){var allJud="Alba, Arad, Arges, Bacau, Bihor, Bistrita Nasaud, Botosani,        Braila, Brasov, Bucuresti, Buzau, Calarasi, Caras Severin, Cluj,        Constanta, Covasna, Dambovita, Dolj, Galati, Giurgiu, Gorj,        Harghita, Hunedoara, Ialomita, Iasi, Ilfov, Maramures,        Mehedinti, Mures, Neamt, Olt, Prahova, Salaj, Satu Mare,        Sibiu, Suceava, Teleorman, Timis, Tulcea, Valcea, Vaslui, Vrancea";return allJud.split(/, +/g).map(function(state){return{value:state.toLowerCase(),display:state}})}function createFilterFor(query){var lowercaseQuery=angular.lowercase(query);return function(state){return 0===state.value.indexOf(lowercaseQuery)}}var self=this;self.simulateQuery=!1,self.isDisabled=!1,self.jud=loadJud(),self.querySearch=querySearch,self.selectedItemChange=selectedItemChange,self.searchTextChange=searchTextChange}),app.controller("ComparisonCtrl",function($scope){return $scope.labels=["Venituri","Cheltuieli"],$scope.chartData=[0,0],$scope.chartSeries=[0,0],angular.forEach($scope.data,function(item){item.institutie="",venit=$scope.data[dataId-1].venit,cheltuieli=$scope.data[dataId-1].cheltuieli,$scope.chartData=[]}),$scope.chartData.push(venit),$scope.chartData.push(cheltuieli),$scope.chartData}),app.controller("DatePickerCtrl",function($scope){function getDayClass(data){var date=data.date,mode=data.mode;if("day"===mode)for(var dayToCheck=new Date(date).setHours(0,0,0,0),i=0;i<$scope.events.length;i++){var currentDay=new Date($scope.events[i].date).setHours(0,0,0,0);if(dayToCheck===currentDay)return $scope.events[i].status}return""}$scope.today=function(){$scope.dt=new Date},$scope.today(),$scope.clear=function(){$scope.dt=null},$scope.inlineOptions={customClass:getDayClass,maxDate:new Date(2016,1,1),showWeeks:!1},$scope.dateOptions={"year-format":"'yy'","starting-day":1,"datepicker-mode":"'month'","min-mode":"month",maxDate:new Date(2016,1,1),minDate:new Date(2016,1,1)},$scope.open1=function(){$scope.popup1.opened=!0},$scope.setDate=function(year,month,day){$scope.dt=new Date(year,month,day)},$scope.popup1={opened:!1}}),app.controller("FilterCtrl",function($scope,DataStore){$scope.openModal=function($event){$scope.modalShown=!1,$scope.modalShown=!$scope.modalShown;var venit,cheltuieli;return $scope.chartData=[0,0],angular.forEach($scope.data,function(item){var currentRow=$event.target.parentNode,dataId=currentRow.getAttribute("data-id");venit=$scope.data[dataId-1].venit,cheltuieli=$scope.data[dataId-1].cheltuieli,$scope.chartData=[]}),$scope.chartData.push(venit),$scope.chartData.push(cheltuieli),$scope.chartData},$scope.data=[],DataStore.getAll().then(function(items){$scope.data=items}),$scope.search=function(){$scope.arie=document.getElementById("arie").value,$scope.institutie=document.getElementById("institutie").value,DataStore.getSearch($scope.arie,$scope.institutie).then(function(items){$scope.data=items})},$scope.chartLabels=["Venituri","Cheltuieli"],Chart.defaults.global.colours=["#00ffff","#fff"]}),app.controller("HomeCtrl",function($scope,DataStore){$scope.openModal=function(){$scope.modalShown=!1,$scope.modalShown=!$scope.modalShown},$scope.date=[],$scope.showData=function(){var incomeSum=0,outcomeSum=0;DataStore.getAll().then(function(items){return $scope.date=items,items.forEach(function(index){"Bucuresti"===index.judet&&(incomeSum+=Math.round(index.venit),outcomeSum+=Math.round(index.cheltuieli))}),document.getElementById("income-hover").innerHTML="Total venituri: "+incomeSum+"  mii lei",document.getElementById("outcome-hover").innerHTML="Total cheltuieli: "+outcomeSum+" mii lei",[incomeSum,outcomeSum]})},$scope.hideData=function(){document.getElementById("income-hover").innerHTML="",document.getElementById("outcome-hover").innerHTML=""}}),app.factory("DataStore",function($http,$q){return function(){var URL="https://intense-sierra-23176.herokuapp.com/search",getAll=function(){return $q(function(resolve,reject){$http({url:URL}).then(function(xhr){200==xhr.status?resolve(xhr.data):reject()},reject)})},getSearch=function(area,inst){return $q(function(resolve,reject){var url=URL,params="";""!==area&&(params="?area="+encodeURIComponent(area)),""!==inst&&(""!==params?params+="&inst="+encodeURIComponent(inst):params="?inst="+encodeURIComponent(inst)),url+=params,$http({url:url}).then(function(xhr){200==xhr.status?resolve(xhr.data):reject()},reject)})};return{getAll:getAll,getSearch:getSearch}}()});
+var app = angular.module("transparencyApp", ['ngRoute', 'chart.js', 'ui.bootstrap', 'ngMaterial']);
+app.config(function ($locationProvider, $routeProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+    $routeProvider
+        .when('/', {
+            templateUrl: 'Views/home.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'home'
+        })
+        .when('/comparison', {
+            templateUrl: 'Views/comparison.html',
+            controller: 'ComparisonCtrl',
+            controllerAs: 'comparison'
+        })
+        .when('/filter', {
+            templateUrl: 'Views/filter.html',
+            controller: 'FilterCtrl',
+            controllerAs: 'filter'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});
+
+app.directive('modalDialog', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            show: '='
+        },
+        replace: true, // Replace with the template below
+        transclude: true, // we want to insert custom content inside the directive
+        link: function(scope, element, attrs) {
+            scope.dialogStyle = {};
+            if (attrs.width)
+                scope.dialogStyle.width = attrs.width;
+            if (attrs.height)
+                scope.dialogStyle.height = attrs.height;
+            scope.hideModal = function() {
+                scope.show = false;
+            };
+        },
+        template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><span class='glyphicon glyphicon-remove'></span></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+    };
+});;app.controller('AutocompleteCtrl', function($timeout, $q, $log){
+  var self = this;
+    self.simulateQuery = false;
+    self.isDisabled    = false;
+    self.jud        = loadJud();
+    self.querySearch   = querySearch;
+    self.selectedItemChange = selectedItemChange;
+    self.searchTextChange   = searchTextChange;
+   
+    function querySearch (query) {
+      var results = query ? self.jud.filter( createFilterFor(query) ) : self.jud, deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { 
+          deferred.resolve( results ); 
+        }, 
+        Math.random() * 1000, false);
+          return deferred.promise;
+      } else {
+          return results;
+      }
+   }
+   function searchTextChange(text) {
+      $log.info('Text changed to ' + text);
+   }
+   function selectedItemChange(item) {
+      $log.info('Item changed to ' + JSON.stringify(item));
+   }
+   //build list of states as map of key-value pairs
+   function loadJud() {
+      var allJud = 'Alba, Arad, Arges, Bacau, Bihor, Bistrita Nasaud, Botosani,\
+        Braila, Brasov, Bucuresti, Buzau, Calarasi, Caras Severin, Cluj,\
+        Constanta, Covasna, Dambovita, Dolj, Galati, Giurgiu, Gorj,\
+        Harghita, Hunedoara, Ialomita, Iasi, Ilfov, Maramures,\
+        Mehedinti, Mures, Neamt, Olt, Prahova, Salaj, Satu Mare,\
+        Sibiu, Suceava, Teleorman, Timis, Tulcea, Valcea, Vaslui, Vrancea' ;
+      return allJud.split(/, +/g).map( function (state) {
+         return {
+            value: state.toLowerCase(),
+            display: state
+         };
+      });
+   }
+   //filter function for search query
+   function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(state) {
+         return (state.value.indexOf(lowercaseQuery) === 0);
+      };
+   }
+ });;app.controller("ComparisonCtrl", function ($scope, DataStore) {
+
+    $scope.chartSeries = ['Venituri', 'Cheltuieli'];
+    $scope.chartData = [];
+    $scope.chartVenit = [];
+    $scope.chartCheltuieli = [];
+    $scope.labels = [];
+    $scope.institutie1 = document.getElementById("byinstitutie");
+    $scope.institutie2 = document.getElementById("byinstitutie2");
+
+    $scope.search = function () {
+        DataStore.getAll().then(function (items) {
+            $scope.data = items;
+            /*for (var i = 0; i < $scope.data.length; i++) {
+                if ($scope.data[i].institutie.toLowerCase() === $scope.institutie1.value.toLowerCase()) {
+                    var dataId = $scope.data[i].id;
+                    $scope.chartVenit.push($scope.data[dataId - 1].venit);
+                    $scope.chartCheltuieli.push($scope.data[dataId - 1].cheltuieli);
+                    $scope.chartSeries.push($scope.data[i].institutie);
+                };
+                if ($scope.data[i].institutie.toLowerCase() === $scope.institutie2.value.toLowerCase()) {
+                    var dataId = $scope.data[i].id;
+                    $scope.chartVenit.push($scope.data[dataId - 1].venit);
+                    $scope.chartCheltuieli.push($scope.data[dataId - 1].cheltuieli);
+                    $scope.chartSeries.push($scope.data[i].institutie);
+                };
+
+                $scope.chartData.push($scope.chartVenit);
+                $scope.chartData.push($scope.chartCheltuieli);
+                $scope.chartVenit = [];
+                $scope.chartCheltuieli = [];
+                console.log($scope.chartData);
+                console.log($scope.chartSeries);
+            };*/
+
+            angular.forEach($scope.data, function (item) {
+                if (item.institutie.toLowerCase() === $scope.institutie1.value.toLowerCase()) {
+                    var dataId = item.id;
+                    $scope.chartVenit.push($scope.data[dataId - 1].venit);
+                    $scope.chartCheltuieli.push($scope.data[dataId - 1].cheltuieli);
+                    $scope.labels.push(item.institutie);
+                };
+                if (item.institutie.toLowerCase() === $scope.institutie2.value.toLowerCase()) {
+                    var dataId = item.id;
+                    $scope.chartVenit.push($scope.data[dataId - 1].venit);
+                    $scope.chartCheltuieli.push($scope.data[dataId - 1].cheltuieli);
+                    $scope.labels.push(item.institutie);
+                };
+            });
+
+            $scope.chartData.push($scope.chartVenit);
+            $scope.chartData.push($scope.chartCheltuieli);
+        });
+        $scope.chartData = [];
+        $scope.labels = [];
+    };
+
+    Chart.defaults.global.colours = ['#ffff00','#000'];
+});
+;app.controller('DatePickerCtrl', function ($scope) {
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function() {
+    $scope.dt = null;
+  };
+
+  $scope.inlineOptions = {
+    customClass: getDayClass,
+    maxDate: new Date(2016, 1, 1),
+    showWeeks: false
+  };
+
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1,
+    'datepicker-mode':"'month'",
+    'min-mode':"month",
+    maxDate: new Date(2016, 1, 1),
+    minDate: new Date(2016, 1, 1)
+  };
+
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+  $scope.setDate = function(year, month, day) {
+    $scope.dt = new Date(year, month, day);
+  };
+  
+  $scope.popup1 = {
+    opened: false
+  };
+
+  function getDayClass(data) {
+    var date = data.date,
+      mode = data.mode;
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i = 0; i < $scope.events.length; i++) {
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+
+    return '';
+  }
+});;app.controller("FilterCtrl", function ($scope, DataStore) {
+    $scope.openModal = function ($event) {
+        $scope.modalShown = false;
+        $scope.modalShown = !$scope.modalShown;
+
+        var venit;
+        var cheltuieli;
+        $scope.chartData = [0, 0];
+
+        angular.forEach($scope.data, function (item) {
+            var currentRow = $event.target.parentNode;
+            var dataId = currentRow.getAttribute('data-id');
+            venit = $scope.data[dataId-1].venit;
+            cheltuieli = $scope.data[dataId-1].cheltuieli;
+            $scope.chartData = [];
+        });
+
+        $scope.chartData.push(venit);
+        $scope.chartData.push(cheltuieli);
+
+        return $scope.chartData;
+    };
+
+
+
+    $scope.data = [];
+    DataStore.getAll().then(function (items) {
+        $scope.data = items;
+    });
+
+    $scope.search = function () {
+        $scope.arie = document.getElementById('arie').value;
+        $scope.institutie = document.getElementById('institutie').value;
+        DataStore.getSearch($scope.arie, $scope.institutie).then(function (items) {
+            $scope.data = items;
+        })
+    };
+
+    $scope.chartLabels = ['Venituri', 'Cheltuieli'];
+    Chart.defaults.global.colours = ['#ffff00','#000'];
+});;app.controller("HomeCtrl", function($scope, DataStore){
+    $scope.openModal = function () {
+        $scope.modalShown = false;
+        $scope.modalShown = !$scope.modalShown;
+    };
+    $scope.date =[];
+    $scope.showData = function () {
+        var incomeSum = 0;
+        var outcomeSum = 0;
+        DataStore.getAll().then(function (items) {
+            $scope.date = items;
+
+            items.forEach(function (index) {
+                if( index.judet ==='Bucuresti') {
+                    incomeSum += Math.round(index.venit);
+                    outcomeSum += Math.round(index.cheltuieli);
+                }
+            });
+            document.getElementById('income-hover').innerHTML = 'Total venituri: ' + incomeSum +'  mii lei';
+            document.getElementById('outcome-hover').innerHTML = 'Total cheltuieli: ' + outcomeSum +' mii lei';
+            return [incomeSum, outcomeSum];
+        });
+
+    };
+    $scope.hideData = function () {
+        document.getElementById('income-hover').innerHTML = '';
+        document.getElementById('outcome-hover').innerHTML = '';
+
+    }
+});;app.factory('DataStore', function ($http, $q) {
+    return (function () {
+        var URL = 'https://intense-sierra-23176.herokuapp.com/search';
+
+        var getAll = function () {
+            return $q(function (resolve, reject) {
+                $http({url: URL}).then(function (xhr) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.data);
+                        } else {
+                            reject();
+                        }
+                    },
+                    reject
+                );
+            })
+        };
+
+        var getSearch = function (area, inst) {
+            return $q(function (resolve, reject) {
+                var url = URL;
+                var params = '';
+                if (area !== '') {
+                    params = '?area=' + encodeURIComponent(area);
+                }
+                if (inst !== '') {
+                    if (params !== '') {
+                        params += '&inst=' + encodeURIComponent(inst);
+                    } else {
+                        params = '?inst=' + encodeURIComponent(inst);
+                    }
+                }
+                url += params;
+
+                $http({url: url}).then(function (xhr) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.data);
+                        } else {
+                            reject();
+                        }
+                    },
+                    reject
+                );
+            })
+        };
+
+        return {
+            getAll: getAll,
+            getSearch: getSearch
+        };
+    })();
+});

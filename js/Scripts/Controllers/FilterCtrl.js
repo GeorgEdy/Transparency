@@ -37,5 +37,5 @@ app.controller("FilterCtrl", function ($scope, DataStore) {
     };
 
     $scope.chartLabels = ['Venituri', 'Cheltuieli'];
-    Chart.defaults.global.colours = ['#00ffff','#fff'];
+    Chart.defaults.global.colours = ['#ffff00','#000'];
 });
