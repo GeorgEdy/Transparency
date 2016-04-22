@@ -1,18 +1,26 @@
 <div class="container-fluid" ng-controller="ComparisonCtrl">
-    <div class="col-md-8 col-md-offset-2 form-container">
+    <h1 class="filter-title">Comparati institutiile</h1>
+    <div class="col-md-6 col-md-offset-3 form-container">
         <form class="form-inline">
             <div class="form-group col-md-4 col-md-offset-4">
-                <label for="byjudet">Judet</label>
-                <input type="text" class="form-control" id="byjudet" placeholder="Introduceti judetul" value="Bucuresti">
+                <div class="txt-align">
+                    <label for="byjudet">Judet</label>
+                </div>
+                <div>
+                    <input type="text" class="form-control max-width" id="byjudet" placeholder="Introduceti judetul" value="Bucuresti">
+                </div>
             </div>
             <div class="form-group col-md-12 data-adjust5">
                 <div class="ib">
                     <label for="byinstitutie">Institutia 1</label>
-                    <input type="text" class="form-control" id="byinstitutie" placeholder="Introduceti institutia">
+                    <input type="text" class="form-control max-width" id="byinstitutie" placeholder="Introduceti institutia">
                 </div>
                 <div class="ib">
                     <label for="byinstitutie2">Institutia 2</label>
-                    <input type="text" class="form-control" id="byinstitutie2" placeholder="Introduceti institutia">
+                    <input type="text" class="form-control max-width" id="byinstitutie2" placeholder="Introduceti institutia">
+                </div>
+                <div class="data-adjust4">
+                    <input type="submit" value="Comparati" class="btn btn-primary" id="submit"/>
                 </div>
             </div>
         </form>

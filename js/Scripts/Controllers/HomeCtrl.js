@@ -1,4 +1,4 @@
-app.controller("HomeCtrl",function($scope, DataStore){
+app.controller("HomeCtrl", function($scope, DataStore){
     $scope.openModal = function () {
         $scope.modalShown = false;
         $scope.modalShown = !$scope.modalShown;

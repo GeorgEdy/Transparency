@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     height: auto;
     background: none;
 }
@@ -40,7 +41,9 @@ body {
     font-weight: 900;
 }
 
-polyline, polygon, path {
+polyline,
+polygon,
+path {
     stroke: #fff;
     fill: #608061;
 }
@@ -86,10 +89,12 @@ footer {
     margin: 30px 0 30px 0;
     text-align: center;
 }
+
 footer img {
     width: 146px;
     height: 146px;
 }
+
 footer h1 {
     color: #fff;
     margin: 0 0 30px 0;
@@ -99,17 +104,19 @@ footer h1 {
     font-weight: 900;
     text-align: left;
 }
+
 figure {
     display: inline-block;
     overflow: hidden;
     position: relative;
     margin: 0 20px;
 }
+
 figcaption {
     display: block;
-    width: 170px;
+    width: 160px;
     margin: 5px auto;
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     color: #fff;
     background-color: rgba(51,51,51,1);
@@ -119,7 +126,10 @@ figcaption {
     font-size: 16px;
     border-radius: 5px;
 }
-.form-container, .table-container, .chart-container {
+
+.form-container,
+.table-container,
+.chart-container {
     margin-top: 30px;
     margin-bottom: 30px;
     background-color: rgba(255, 255, 255, 1);
@@ -127,6 +137,7 @@ figcaption {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 5px;
 }
+
 .ng-modal-dialog {
     z-index:999;
     position: fixed;
@@ -144,6 +155,7 @@ figcaption {
     font-size: 14px;
     font-weight: 700;
 }
+
 .ng-modal-overlay {
     position: fixed;
     top: 0;
@@ -156,6 +168,7 @@ figcaption {
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
 }
+
 .ng-modal-close {
     color: #FD0021;
     position: absolute;
@@ -164,41 +177,53 @@ figcaption {
     font-size: 30px;
     font-weight: 900;
 }
+
 #bucuresti {
     fill: #3E5D3E;
 }
+
 #bucuresti:hover {
     fill: #7FA080;
 }
+
 .nav>li {
     text-align: center;
     margin: 0 20px;
 }
+
 .nav>li>a {
     padding: 5px 10px;
 }
-#judet {
-    width: 50%;
-}
+
 .data-adjust {
     width: 25%;
     margin: 0;
 }
+
 .data-adjust2 {
     top: 13px;
 }
+
 .data-adjust4 {
     margin-top: 30px;
+    width: 45%;
+    margin-left: 2.3%;
+
 }
+
 .data-adjust5 {
     margin-top: 30px;
 }
+
 .btn.btn-default.data-adjust3{
     border-radius: 4px;
 }
-.md-whiteframe-1dp, .md-whiteframe-z1 {
+
+.md-whiteframe-1dp,
+.md-whiteframe-z1 {
     box-shadow: none;
 }
+
 md-autocomplete input:not(.md-input) {
     height: 34px;
     line-height: 15px;
@@ -226,24 +251,21 @@ md-autocomplete button {
     margin: 0;
 }
 
-#datepicker {
+.form-group .input-group.data-adjust input.datepicker {
     border-radius: 4px;
 }
 
-#byinstitutie,
-#byinstitutie2 {
+.form-group input.max-width {
     width: 100%;
-}
-
-#byjudet {
-    display: block;
 }
 
 .ib {
     display: inline-block;
-    width: 49%;
+    width: 45%;
     text-align: center;
+    margin: 0 2.3%;
 }
+
 .data {
     color:white;
     font-size:18px;
@@ -257,4 +279,101 @@ md-autocomplete button {
 }
 .absolute {
     position: absolute;
+}
+.txt-align {
+    text-align: center;
+}
+
+.face-container {
+    background-color: rgba(51,51,51,1);;
+    position: relative;
+    z-index: 2;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    transition: border-radius 0.4s ease-in-out 0.4s;
+}
+
+.face-container:hover {
+    border-radius: 10px;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    position: relative;
+    border-radius: 50%;
+    transition: opacity 0.4s ease-in-out 0.8s;
+}
+
+.face-container:hover .face{
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.desc {
+    padding: 10px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-weight: bolder;
+    color: transparent;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transition: color 0.4s ease-in-out;
+}
+
+.face-container:hover .desc {
+    color: #D6A126;
+    transition: color 0.4s ease-in-out 0.8s;
+}
+
+.roxanau {
+    background-image: url("https://media.licdn.com/media/p/3/005/061/11c/12375ce.jpg");
+}
+
+.roxanab {
+    background-image: url("https://media.licdn.com/media/p/2/005/034/10b/32672fe.jpg");
+}
+
+.alex {
+    background-image: url("https://media.licdn.com/media/AAEAAQAAAAAAAARCAAAAJGY0ZGFmMmFlLWJjOGEtNDExZi05NjFkLWEyNmYwYjczMzM3Mg.jpg");
+}
+
+.ionut {
+    background-image: url("https://media.licdn.com/media/AAEAAQAAAAAAAASKAAAAJDNmMmJjODhhLTk2YzctNDRhYi05MTQxLTZiNWZmZWJjZGRjMw.jpg");
+}
+
+.george {
+    background-image: url("https://media.licdn.com/media/AAEAAQAAAAAAAAaDAAAAJDQ4NjBiYjNhLTU3YzQtNGQyMy1hOWUxLTNiZjdhYWJkYjU2MA.jpg");
+}
+
+.grigore {
+    background-image: url("https://media.licdn.com/media/p/6/005/0a7/1ae/334e242.jpg");
+}
+
+.inst {
+    max-width:250px;
+}
+
+.filter-title {
+    position: relative;
+    margin: 40px 0 10px;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.filter-title::after {
+    content: '';
+    border-bottom: 2px solid white;
+    width: 150px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
 }
