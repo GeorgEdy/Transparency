@@ -1,25 +1,19 @@
 <div class="container-fluid" ng-controller="FilterCtrl">
-<<<<<<< HEAD
     <modal-dialog show='modalShown'>
         <canvas id="pie" class="chart chart-pie" chart-data="chartData" chart-labels="chartLabels" chart-colours="chartColor"></canvas>
     </modal-dialog>
-=======
     <h1 class="filter-title">Filtrati informatiile dorite</h1>
->>>>>>> cfa05f367e335bd0dba3bdaddec64647841e2b75
     <div class="col-md-6 col-md-offset-3 form-container">
         <form class="form-horizontal" ng-submit="search()">
             <div class="form-group" ng-controller="DatePickerCtrl">
                 <p class="input-group data-adjust">
                     <label for="judet">Luna / An</label>
-<<<<<<< HEAD
                     <input type="text" class="form-control" uib-datepicker-popup="MMM-yyyy" min-mode="'month'"
                            datepicker-mode="month" ng-model="dt" is-open="popup1.opened" close-on-date-selection="true"
                            datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Inchideti"
                            current-text="Luna curenta" clear-text="Stergeti" ng-click="open1()" id="datepicker"
                            value="Jan-2016"/>
-=======
                     <input type="text" class="form-control datepicker" uib-datepicker-popup="MMM-yyyy" min-mode="'month'" datepicker-mode="month" ng-model="dt" is-open="popup1.opened" close-on-date-selection="true" datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Inchideti" current-text="Luna curenta" clear-text="Stergeti" ng-click="open1()" id="datepicker" value="Jan-2016"/>
->>>>>>> cfa05f367e335bd0dba3bdaddec64647841e2b75
                     <span class="input-group-btn data-adjust2">
                         <button type="button" class="btn btn-default data-adjust3" ng-click="open1()"><i
                                 class="glyphicon glyphicon-calendar"></i></button>
@@ -68,13 +62,8 @@
             </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
             <tr ng-repeat="item in data" ng-click="openModal($event)" data-id="{{item.id}}">
                    <td>{{item.institutie}}</td>
-=======
-                <tr ng-repeat="item in data">
-                   <td class="inst">{{item.institutie}}</td>
->>>>>>> cfa05f367e335bd0dba3bdaddec64647841e2b75
                    <td>{{item.judet}}</td>
                    <td>{{item.arie}}</td>
                    <td>{{item.venit}}</td>
