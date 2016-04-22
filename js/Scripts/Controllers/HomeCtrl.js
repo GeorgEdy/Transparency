@@ -16,6 +16,7 @@ app.controller("HomeCtrl", function($scope, DataStore){
                     outcomeSum += Math.round(index.cheltuieli);
                 }
             });
+
             document.getElementById('income-hover').innerHTML = 'Total venituri: ' + incomeSum +'  mii lei';
             document.getElementById('outcome-hover').innerHTML = 'Total cheltuieli: ' + outcomeSum +' mii lei';
             return [incomeSum, outcomeSum];
