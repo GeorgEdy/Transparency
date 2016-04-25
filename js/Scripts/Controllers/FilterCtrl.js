@@ -29,12 +29,18 @@ app.controller("FilterCtrl", function ($scope, $timeout, DataStore) {
 
     $scope.data = [];
 
+    $scope.showAlert = true;
+
     $scope.search = function () {
+        $scope.showAlert = false;
         $scope.arie = document.getElementById('arie').value;
         $scope.institutie = document.getElementById('institutie').value;
         $scope.data = document.getElementById('datepicker').value;
         DataStore.getSearch($scope.arie, $scope.institutie).then(function (items) {
             $scope.data = items;
+            if($scope.data.length == 0) {
+              $scope.showAlert = true;
+            }
         })
     };
 
